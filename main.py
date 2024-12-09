@@ -24,7 +24,7 @@ def vernam_encrypt(file):
         key_data.write(key)
         print("Key saved!")
     if len(message) != len(key):
-        raise ValueError("Длина сообщения и ключа должна совпадать!")
+        raise ValueError("The length of the message and the key must match!")
     encrypted_message = ''.join(chr(ord(m) ^ ord(k)) for m, k in zip(message, key))
     with open("encrypted.txt", 'w') as enc_file:
         enc_file.write(encrypted_message)
@@ -37,7 +37,7 @@ def vernam_decrypt(encrypted_file, key_file):
     with open(key_file, 'r') as key_data:
         key = key_data.read()
     if len(encrypted_message) != len(key):
-        raise ValueError("Длина зашифрованного сообщения и ключа должна совпадать!")
+        raise ValueError("The length of the encrypted message and the key must match!")
     decrypted_message = ''.join(chr(ord(c) ^ ord(k)) for c, k in zip(encrypted_message, key))
     with open("decrypted.txt", 'w') as dec_file:
         dec_file.write(decrypted_message)
